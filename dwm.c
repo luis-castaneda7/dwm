@@ -36,6 +36,7 @@
 #include <X11/Xlib.h>
 #include <X11/Xproto.h>
 #include <X11/Xutil.h>
+#include <math.h>
 #ifdef XINERAMA
 #include <X11/extensions/Xinerama.h>
 #endif /* XINERAMA */
@@ -233,10 +234,12 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
+static void getTagCount();
 
 /* variables */
 static const char broken[] = "broken";
 static char stext[256];
+static int tagCount = 0;
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
 static int bh, blw = 0;      /* bar geometry */
@@ -709,6 +712,7 @@ drawbar(Monitor *m)
 	}
 
 	for (c = m->clients; c; c = c->next) {
+		if (c->tags == tagCount) { continue; }
 		occ |= c->tags;
 		if (c->isurgent)
 			urg |= c->tags;
@@ -2124,6 +2128,13 @@ zoom(const Arg *arg)
 	pop(c);
 }
 
+void
+getTagCount() {
+	for (int i = 0; i < LENGTH(tags); i++) {
+		tagCount += pow(2, i);
+	}
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -2141,6 +2152,7 @@ main(int argc, char *argv[])
 	if (pledge("stdio rpath proc exec", NULL) == -1)
 		die("pledge");
 #endif /* __OpenBSD__ */
+	getTagCount();
 	scan();
 	run();
 	cleanup();
