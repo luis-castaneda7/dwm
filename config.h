@@ -21,6 +21,12 @@ static const char *colors[][3]      = {
 /* tagging */
 static const char *tags[] = { "一", "二", "三", "四"};
 
+/* autostart */
+static const char *const autostart[] = {
+	"dropbox", "start", NULL
+
+};
+
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
