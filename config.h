@@ -78,7 +78,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ CTRL,		                	XK_q,      killclient,     {0} },
+	{ CTRL,		                XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_f,  	   setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -90,6 +90,9 @@ static Key keys[] = {
 	{ CTRL|ShiftMask,               XK_4,      spawn,          		  SHCMD("screenshot") },
 	{ 0,               		XF86XK_MonBrightnessUp,   spawn,          SHCMD("light -A 5") },
 	{ 0,               		XF86XK_MonBrightnessDown, spawn,          SHCMD("light -U 5") },
+	{ 0,               		XF86XK_AudioMute,         spawn,          SHCMD("amixer set Master toggle") },
+	{ 0,               		XF86XK_AudioRaiseVolume,  spawn,          SHCMD("amixer set Master 3%+") },
+	{ 0,               		XF86XK_AudioLowerVolume,  spawn,          SHCMD("amixer set Master 3%-") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
