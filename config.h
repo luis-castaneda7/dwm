@@ -19,11 +19,15 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "一", "二", "三", "四"};
+static const char *tags[] = { "一", "二", "三", "四", "五"};
 
 /* autostart */
 static const char *const autostart[] = {
-	"dropbox", "start", NULL
+	"dropbox", "start", NULL,
+	"slstatus", NULL,
+	"unclutter", "-idle", "2", NULL,
+	"redshift", "-l", "41.8:-87.62", "-t", "5700:3600", "-g", "0.8", "-m", "randr", "-v", NULL,
+	"feh", "--bg-fill", "cats-fishing--1366x768.jpg", NULL
 
 };
 
