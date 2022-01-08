@@ -19,15 +19,16 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "一", "二", "三", "四", "五"};
+static const char *tags[] = { "初", "二", "三", "四", "五"};
 
 /* autostart */
 static const char *const autostart[] = {
 	"dropbox", "start", NULL,
 	"slstatus", NULL,
+	"caffeine", NULL,
 	"unclutter", "-idle", "2", NULL,
-	"redshift", "-l", "41.8:-87.62", "-t", "5700:3600", "-g", "0.8", "-m", "randr", "-v", NULL,
-	"feh", "--bg-fill", "cats-fishing--1366x768.jpg", NULL
+	//"redshift", "-l", "41.8:-87.62", "-t", "5700:3600", "-g", "0.8", "-m", "randr", "-v", NULL,
+	"nitrogen", "--restore", NULL
 
 };
 
@@ -40,6 +41,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            1,          0, 			-1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,          0, 			-1 },
 	{ "feh",      NULL,       NULL,       ~0,           1,          1, 			-1 },
+	{ "zoom",     NULL,       NULL,       1 << 4,       0,          0, 			-1 },
 };
 
 /* layout(s) */
@@ -88,7 +90,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ CTRL,		                XK_q,      killclient,     {0} },
+	{ CTRL,				XK_q,      killclient,     {0} },
+	{ CTRL|ShiftMask,		XK_c,      killall,        {0} },
 	{ MODKEY,                       XK_f,  	   setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -101,8 +104,9 @@ static Key keys[] = {
 	{ 0,               		XF86XK_MonBrightnessUp,   spawn,          SHCMD("light -A 5") },
 	{ 0,               		XF86XK_MonBrightnessDown, spawn,          SHCMD("light -U 5") },
 	{ 0,               		XF86XK_AudioMute,         spawn,          SHCMD("amixer set Master toggle") },
-	{ 0,               		XF86XK_AudioRaiseVolume,  spawn,          SHCMD("amixer set Master 5%+") },
-	{ 0,               		XF86XK_AudioLowerVolume,  spawn,          SHCMD("amixer set Master 5%-") },
+	{ 0,               		XF86XK_AudioRaiseVolume,  spawn,          SHCMD("amixer set Master 3%+") },
+	{ 0,               		XF86XK_AudioLowerVolume,  spawn,          SHCMD("amixer set Master 3%-") },
+	{ 0,               		XF86XK_Display,			  spawn,          SHCMD("tv") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
