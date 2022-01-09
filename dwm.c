@@ -1068,7 +1068,9 @@ killall(const Arg *arg)
 	if (!selmon->sel) 
 		return;
 	for (i = selmon->clients; i; i = i->next) {
-		if (ISVISIBLE(i) && !sendevent(i, wmatom[WMDelete])) {
+		if (ISVISIBLE(i) 
+				&& !sendevent(i, wmatom[WMDelete])
+				&& i != selmon->sel) {
 			killwin(&(i->win));
 		}
 	}
