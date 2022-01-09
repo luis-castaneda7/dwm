@@ -27,7 +27,7 @@ static const char *const autostart[] = {
 	"slstatus", NULL,
 	"caffeine", NULL,
 	"unclutter", "-idle", "2", NULL,
-	//"redshift", "-l", "41.8:-87.62", "-t", "5700:3600", "-g", "0.8", "-m", "randr", "-v", NULL,
+	"redshift", "-l", "41.8:-87.62", "-t", "5700:3600", "-g", "0.8", "-m", "randr", "-v", NULL,
 	"nitrogen", "--restore", NULL
 
 };

@@ -128,6 +128,7 @@ struct Monitor {
 	Client *clients;
 	Client *sel;
 	Client *stack;
+	Client *tagmarked[32];
 	Monitor *next;
 	Window barwin;
 	const Layout *lt[2];
@@ -856,6 +857,35 @@ focusin(XEvent *e)
 }
 
 void
+focusmaster()
+{
+	Client *master;
+
+	if (selmon->nmaster > 1)
+		return;
+	if (!selmon->sel || selmon->sel->isfullscreen)
+		return;
+
+	master = nexttiled(selmon->clients);
+
+	if (!master)
+		return;
+	
+	int i;
+	for (i = 0; !(selmon->tagset[selmon->seltags] & 1 << i); i++);
+	i++;
+
+	if (selmon->sel == master) {
+		if (selmon->tagmarked[i] && ISVISIBLE(selmon->tagmarked[i]))
+			focus(selmon->tagmarked[i]);
+	} else {
+		selmon->tagmarked[i] = selmon->sel;
+		focus(master);
+	}
+
+}
+
+void
 focusmon(const Arg *arg)
 {
 	Monitor *m;
@@ -1144,7 +1174,11 @@ manage(Window w, XWindowAttributes *wa)
 	c->mon->sel = c;
 	arrange(c->mon);
 	XMapWindow(dpy, c->win);
-	focus(NULL);
+
+	if (c->isCornered)
+		focusmaster();
+	else
+		focus(NULL);
 }
 
 void
@@ -2169,7 +2203,7 @@ view(const Arg *arg)
 	selmon->seltags ^= 1; /* toggle sel tagset */
 	if (arg->ui & TAGMASK)
 		selmon->tagset[selmon->seltags] = arg->ui & TAGMASK;
-	focus(NULL);
+	focusmaster();
 	arrange(selmon);
 }
 
