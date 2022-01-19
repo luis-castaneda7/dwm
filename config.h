@@ -10,9 +10,9 @@ static const char dmenufont[]       = "JetBrainsMono-Regular:size=12";
 
 
 static const char col_gray1[]       = "#282a36";
-static const char col_gray2[]       = "#ffb86c";
+static const char col_gray2[]       = "#ffffff";
 static const char col_gray3[]       = "#f6c4e1";
-static const char col_gray4[]       = "#ffb86c";
+static const char col_gray4[]       = "#ffffff";
 static const char col_cyan[]        = "#282a36";
 static const char *colors[][3]      = {
     /*               fg         bg         border   */
@@ -30,7 +30,7 @@ static const char *const autostart[] = {
 	"slstatus", NULL,
 	"caffeine", NULL,
 	"unclutter", "-idle", "2", NULL,
-	"redshift", "-l", "41.8:-87.62", "-t", "5700:3600", "-g", "0.8", "-m", "randr", "-v", NULL,
+	//"redshift", "-l", "41.8:-87.62", "-t", "5700:3600", "-g", "0.8", "-m", "randr", "-v", NULL,
 	"nitrogen", "--restore", NULL
 
 };
@@ -111,6 +111,7 @@ static Key keys[] = {
 	{ 0,               		XF86XK_AudioRaiseVolume,  spawn,          SHCMD("amixer set Master 3%+") },
 	{ 0,               		XF86XK_AudioLowerVolume,  spawn,          SHCMD("amixer set Master 3%-") },
 	{ 0,               		XF86XK_Display,			  spawn,          SHCMD("tv") },
+	{ 0,               		XF86XK_Tools,			  spawn,          SHCMD("pomo") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
