@@ -7,16 +7,19 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrainsMono-Regular:size=12:antialias=true:autohint=true" };
 static const char dmenufont[]       = "JetBrainsMono-Regular:size=12";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+
+
+static const char col_gray1[]       = "#282a36";
+static const char col_gray2[]       = "#ffb86c";
+static const char col_gray3[]       = "#f6c4e1";
+static const char col_gray4[]       = "#ffb86c";
+static const char col_cyan[]        = "#282a36";
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+    /*               fg         bg         border   */
+    [SchemeNorm] = { col_gray3, col_gray1, col_cyan },
+    [SchemeSel]  = { col_gray4, col_cyan,  col_gray2  },
 };
+ 
 
 /* tagging */
 static const char *tags[] = { "初", "二", "三", "四", "五"};
@@ -72,7 +75,7 @@ static const Layout layouts[] = {
 #include <X11/XF86keysym.h>
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "124x15", NULL };
@@ -101,6 +104,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ CTRL|ShiftMask,               XK_4,      spawn,          		  SHCMD("screenshot") },
+	{ CTRL|ShiftMask,               XK_3,      spawn,          		  SHCMD("screenshot-copy") },
 	{ 0,               		XF86XK_MonBrightnessUp,   spawn,          SHCMD("light -A 3") },
 	{ 0,               		XF86XK_MonBrightnessDown, spawn,          SHCMD("light -U 3") },
 	{ 0,               		XF86XK_AudioMute,         spawn,          SHCMD("amixer set Master toggle") },
