@@ -172,6 +172,7 @@ static void focus(Client *c);
 static void focusin(XEvent *e);
 static void focusmon(const Arg *arg);
 static void focusstack(const Arg *arg);
+static Client *getclientundermouse(void);
 static int getrootptr(int *x, int *y);
 static long getstate(Window w);
 static int gettextprop(Window w, Atom atom, char *text, unsigned int size);
@@ -925,6 +926,22 @@ focusstack(const Arg *arg)
 	}
 }
 
+Client *
+getclientundermouse(void) 
+{
+	int ret, di;
+	unsigned int dui;
+	Window child, dummy;
+
+	ret = XQueryPointer(dpy, root, &dummy, &child, &di, &di, &di, &di, &dui);
+
+	if (!ret) {
+		return NULL;
+	}
+
+	return wintoclient(child);
+}
+
 Atom
 getatomprop(Client *c, Atom prop)
 {
@@ -1624,6 +1641,8 @@ setlayout(const Arg *arg)
 		arrange(selmon);
 	else
 		drawbar(selmon);
+
+	focus(getclientundermouse());
 }
 
 /* arg > 1.0 will set mfact absolutely */
@@ -1933,7 +1952,7 @@ unmanage(Client *c, int destroyed)
 		XUngrabServer(dpy);
 	}
 	free(c);
-	focus(NULL);
+	focus(getclientundermouse());
 	updateclientlist();
 	arrange(m);
 }

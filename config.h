@@ -41,10 +41,13 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating  isCornered 	monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,          0, 			-1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,          0, 			-1 },
-	{ "feh",      NULL,       NULL,       ~0,           1,          1, 			-1 },
-	{ "zoom",     NULL,       NULL,       1 << 4,       0,          0, 			-1 },
+	{ "Gimp",     NULL,       NULL,				0,            1,          0, 			-1 },
+	{ "Firefox",  NULL,       NULL,       		1 << 8,       0,          0, 			-1 },
+	{ "feh",      NULL,       NULL,       		~0,           1,          1, 			-1 },
+	{ "zoom",     NULL,       NULL,       		1 << 4,       1,          0, 			-1 },
+	{ "zoom",     NULL,       "Zoom Meeting",   1 << 4,       0,          0, 			-1 },
+	{  NULL,     "slack",       NULL,       1 << 2,       0,          0, 			-1 },
+	{ "discord",     NULL,       NULL,       1 << 2,       0,          0, 			-1 },
 };
 
 /* layout(s) */
@@ -78,7 +81,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "124x15", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "124x15", "-e", "tmux",NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -112,6 +115,7 @@ static Key keys[] = {
 	{ 0,               		XF86XK_AudioLowerVolume,  spawn,          SHCMD("amixer set Master 3%-") },
 	{ 0,               		XF86XK_Display,			  spawn,          SHCMD("tv") },
 	{ 0,               		XF86XK_Tools,			  spawn,          SHCMD("pomo") },
+	{ CTRL,               	XF86XK_Tools,			  spawn,          SHCMD("spomo") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
