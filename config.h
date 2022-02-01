@@ -28,6 +28,7 @@ static const char *tags[] = { "初", "二", "三", "四", "五"};
 static const char *const autostart[] = {
 	"dropbox", "start", NULL,
 	"slstatus", NULL,
+	"picom", NULL,
 	"caffeine", NULL,
 	"unclutter", "-idle", "2", NULL,
 	//"redshift", "-l", "41.8:-87.62", "-t", "5700:3600", "-g", "0.8", "-m", "randr", "-v", NULL,
@@ -40,14 +41,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating  isCornered 	monitor */
-	{ "Gimp",     NULL,       NULL,				0,            1,          0, 			-1 },
-	{ "Firefox",  NULL,       NULL,       		1 << 8,       0,          0, 			-1 },
-	{ "feh",      NULL,       NULL,       		~0,           1,          1, 			-1 },
-	{ "zoom",     NULL,       NULL,       		1 << 4,       1,          0, 			-1 },
-	{ "zoom",     NULL,       "Zoom Meeting",   1 << 4,       0,          0, 			-1 },
-	{  NULL,     "slack",       NULL,       1 << 2,       0,          0, 			-1 },
-	{ "discord",     NULL,       NULL,       1 << 2,       0,          0, 			-1 },
+	/* class				instance    title				tags mask     isfloating  isCornered 	monitor		ignoreTranscient*/
+	{ "Gimp",				NULL,       NULL,				0,            1,          0, 			-1,				0},
+	{ "Firefox",  			NULL,       NULL,       		1 << 8,       0,          0, 			-1, 			0},
+	{ "feh",      			NULL,       NULL,       		~0,           1,          1, 			-1, 			0},
+	{ "SpeedCrunch",		NULL,       NULL,       		~0,           1,          1, 			-1, 			0},
+	{ "zoom",     			NULL,       NULL,       		1 << 4,       0,          0, 			-1, 			0},
+	{ "zoom",     			"zoom",     "Zoom Meeting",		1 << 4,       0,          0, 			-1, 			0},
+	{  NULL,      			"slack",    NULL,				1 << 2,       0,          0, 			-1, 			0},
+	{ "discord",  			NULL,       NULL,				1 << 2,       0,          0, 			-1, 			0},
+	{ "jetbrains-idea-ce",  NULL,       NULL,				0,			  0,          0, 			-1, 			1},
 };
 
 /* layout(s) */
@@ -108,6 +111,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ CTRL|ShiftMask,               XK_4,      spawn,          		  SHCMD("screenshot") },
 	{ CTRL|ShiftMask,               XK_3,      spawn,          		  SHCMD("screenshot-copy") },
+	{ CTRL|ShiftMask,               XK_2,      spawn,          		  SHCMD("screenshot-save") },
 	{ 0,               		XF86XK_MonBrightnessUp,   spawn,          SHCMD("light -A 3") },
 	{ 0,               		XF86XK_MonBrightnessDown, spawn,          SHCMD("light -U 3") },
 	{ 0,               		XF86XK_AudioMute,         spawn,          SHCMD("amixer set Master toggle") },
