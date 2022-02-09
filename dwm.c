@@ -220,6 +220,7 @@ static void tile(Monitor *);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglescratch(const Arg *arg);
+static void spawnspeedcrunch(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
@@ -1988,6 +1989,28 @@ togglefloating(const Arg *arg)
 		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
 			selmon->sel->w, selmon->sel->h, 0);
 	arrange(selmon);
+}
+
+void
+spawnspeedcrunch(const Arg *arg)
+{
+
+	Client *c;
+	unsigned int found = 0;
+	for (c = selmon->clients; c; c = c->next) {
+		if (strcmp(c->name, "SpeedCrunch") == 0) {
+			found = 1;
+			break;
+		}
+	}
+
+	if (found && ISVISIBLE(c)) {
+		focus(c);
+		restack(selmon);
+	} else {
+		spawn(arg);
+	}
+
 }
 
 void
