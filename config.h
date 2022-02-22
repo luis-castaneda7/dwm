@@ -33,7 +33,6 @@ static const char *const autostart[] = {
 	"unclutter", "-idle", "2", NULL,
 	"redshift", "-l", "41.8:-87.62", "-t", "5700:3600", "-g", "0.8", "-m", "randr", "-v", NULL,
 	"nitrogen", "--restore", NULL
-
 };
 
 static const Rule rules[] = {
@@ -45,6 +44,7 @@ static const Rule rules[] = {
 	{ "Gimp",				NULL,       NULL,				0,            1,          0, 			-1,				0},
 	{ "Firefox",  			NULL,       NULL,       		1 << 8,       0,          0, 			-1, 			0},
 	{ "feh",      			NULL,       NULL,       		~0,           1,          1, 			-1, 			0},
+	{ "flameshot",      	NULL,       NULL,       		~0,           1,          1, 			-1, 			0},
 	{ "SpeedCrunch",		NULL,       NULL,       		~0,           1,          1, 			-1, 			0},
 	{ "zoom",     			NULL,       NULL,       		1 << 4,       0,          0, 			-1, 			0},
 	{ "Anki",     			NULL,       NULL,       		0,		      1,          0, 			-1, 			0},
@@ -113,7 +113,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         	{.i = +1 } },
 	{ CTRL|ShiftMask,               XK_4,      spawn,          		  SHCMD("screenshot") },
 	{ CTRL|ShiftMask,               XK_3,      spawn,          		  SHCMD("screenshot-copy") },
-	{ CTRL|ShiftMask,               XK_2,      spawn,          		  SHCMD("screenshot-save") },
+	{ CTRL|ShiftMask,               XK_2,      spawn,          		  SHCMD("flameshot gui") },
 	{ 0,               		XF86XK_MonBrightnessUp,   spawn,          SHCMD("brightnessControl up") },
 	{ 0,               		XF86XK_MonBrightnessDown, spawn,          SHCMD("brightnessControl down") },
 	{ 0,               		XF86XK_AudioMute,         spawn,          SHCMD("volumeControl mute") },
