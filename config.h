@@ -30,8 +30,6 @@ static const char *const autostart[] = {
 	"slstatus", NULL,
 	"picom", "-b", NULL,
 	"caffeine", NULL,
-	"unclutter", "-idle", "2", NULL,
-	"redshift", "-l", "41.8:-87.62", "-t", "5700:3600", "-g", "0.8", "-m", "randr", "-v", NULL,
 	"nitrogen", "--restore", NULL
 };
 
@@ -120,8 +118,8 @@ static Key keys[] = {
 	{ 0,               		XF86XK_AudioRaiseVolume,  spawn,          SHCMD("volumeControl up") },
 	{ 0,               		XF86XK_AudioLowerVolume,  spawn,          SHCMD("volumeControl down") },
 	{ 0,               		XF86XK_Display,			  spawn,          SHCMD("tv") },
-	{ 0,               		XF86XK_Tools,			  spawn,          SHCMD("pomo") },
-	{ CTRL,               	XF86XK_Tools,			  spawn,          SHCMD("spomo") },
+	{ 0,               		XF86XK_Tools,			  spawn,          SHCMD("killall -s SIGUSR2 slstatus") },
+	{ CTRL,               	XF86XK_Tools,			  spawn,          SHCMD("killall -35 slstatus") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
