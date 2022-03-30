@@ -22,7 +22,7 @@ static const char *colors[][3]      = {
  
 
 /* tagging */
-static const char *tags[] = { "初", "二", "三", "四", "五"};
+static const char *tags[] = { "初", "二", "三", "四"};
 
 /* autostart */
 static const char *const autostart[] = {
@@ -109,6 +109,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       	{.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         	{.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         	{.i = +1 } },
+	{ CTRL|ALT,                     XK_space,  spawn,				  SHCMD("emoji") },
 	{ CTRL|ShiftMask,               XK_4,      spawn,          		  SHCMD("screenshot") },
 	{ CTRL|ShiftMask,               XK_3,      spawn,          		  SHCMD("screenshot-copy") },
 	{ CTRL|ShiftMask,               XK_2,      spawn,          		  SHCMD("flameshot gui") },

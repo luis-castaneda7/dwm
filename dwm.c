@@ -1285,6 +1285,9 @@ manage(Window w, XWindowAttributes *wa)
 		c->x = c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2);
 		c->y = c->mon->wy + (HEIGHT(c) * -1);
 	}
+	if (!strcmp(c->name, "unclutter")) {
+		c->neverfocus = 1;
+	}
 
 	wc.border_width = c->bw;
 	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
@@ -2365,8 +2368,8 @@ view(const Arg *arg)
 	selmon->seltags ^= 1; /* toggle sel tagset */
 	if (arg->ui & TAGMASK)
 		selmon->tagset[selmon->seltags] = arg->ui & TAGMASK;
-	focus(getclientundermouse());
 	arrange(selmon);
+	focus(getclientundermouse());
 }
 
 Client *
