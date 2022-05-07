@@ -22,7 +22,7 @@ static const char *colors[][3]      = {
  
 
 /* tagging */
-static const char *tags[] = { "初", "二", "三", "四", "五"};
+static const char *tags[] = { "初", "二", "三", "四"};
 
 /* autostart */
 static const char *const autostart[] = {
