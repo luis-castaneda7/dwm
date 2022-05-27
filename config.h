@@ -39,7 +39,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class				instance    title				tags mask     isfloating  isCornered 	monitor		ignoreTranscient*/
-	{ "Gimp",				NULL,       NULL,				0,            1,          0, 			-1,				0},
+	{ "Gimp",				NULL,       NULL,				0,            0,          0, 			-1,				0},
 	{ "Firefox",  			NULL,       NULL,       		1 << 8,       0,          0, 			-1, 			0},
 	{ "feh",      			NULL,       NULL,       		~0,           1,          1, 			-1, 			0},
 	{ "flameshot",      	NULL,       NULL,       		~0,           1,          1, 			-1, 			0},

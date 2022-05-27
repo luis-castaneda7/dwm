@@ -1294,6 +1294,9 @@ manage(Window w, XWindowAttributes *wa)
 	updatesizehints(c);
 	updatewmhints(c);
 	cornerwindow(c);
+    if(!strcmp(c->name, "countdown")) {
+        setfullscreen(c, 1);
+    }
 	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
 	grabbuttons(c, 0);
 	if (!c->isfloating)
@@ -2095,9 +2098,9 @@ unmanage(Client *c, int destroyed)
 		XUngrabServer(dpy);
 	}
 	free(c);
-	focus(getclientundermouse());
 	updateclientlist();
 	arrange(m);
+	focus(getclientundermouse());
 }
 
 void
