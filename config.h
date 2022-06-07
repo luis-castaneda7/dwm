@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "CascadiaCode:size=12:antialias=true:autohint=true" };
-static const char dmenufont[]       = "CascadiaCode:size=12";
+static const char *fonts[]          = { "monospace:size=12", "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true" };
+static const char dmenufont[]       = "monospace:size=12";
 
 
 static const char col_gray1[]       = "#282a36";
@@ -42,7 +42,6 @@ static const Rule rules[] = {
 	{ "Gimp",				NULL,       NULL,				0,            0,          0, 			-1,				0},
 	{ "Firefox",  			NULL,       NULL,       		1 << 8,       0,          0, 			-1, 			0},
 	{ "feh",      			NULL,       NULL,       		~0,           1,          1, 			-1, 			0},
-	{ "flameshot",      	NULL,       NULL,       		~0,           1,          1, 			-1, 			0},
 	{ "SpeedCrunch",		NULL,       NULL,       		~0,           1,          1, 			-1, 			0},
 	{ "zoom",     			NULL,       NULL,       		1 << 4,       0,          0, 			-1, 			0},
 	{ "Anki",     			NULL,       NULL,       		0,		      1,          0, 			-1, 			0},
@@ -112,7 +111,7 @@ static Key keys[] = {
 	{ CTRL|ALT,						XK_space,  spawn,          		  SHCMD("emoji") },
 	{ CTRL|ShiftMask,               XK_4,      spawn,          		  SHCMD("screenshot") },
 	{ CTRL|ShiftMask,               XK_3,      spawn,          		  SHCMD("screenshot-copy") },
-	{ CTRL|ShiftMask,               XK_2,      spawn,          		  SHCMD("flameshot gui") },
+	{ CTRL|ShiftMask,               XK_2,      spawn,          		  SHCMD("screenshot-save") },
 	{ 0,               		XF86XK_MonBrightnessUp,   spawn,          SHCMD("brightnessControl up") },
 	{ 0,               		XF86XK_MonBrightnessDown, spawn,          SHCMD("brightnessControl down") },
 	{ 0,               		XF86XK_AudioMute,         spawn,          SHCMD("volumeControl mute") },
