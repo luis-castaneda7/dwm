@@ -9,15 +9,13 @@ static const char *fonts[]          = { "monospace:size=12", "NotoColorEmoji:pix
 static const char dmenufont[]       = "monospace:size=12";
 
 
-static const char col_gray1[]       = "#282a36";
-static const char col_gray2[]       = "#ffffff";
-static const char col_gray3[]       = "#f6c4e1";
-static const char col_gray4[]       = "#ffffff";
-static const char col_cyan[]        = "#282a36";
+static const char col_black[]       = "#282a36";
+static const char col_white[]       = "#ffffff";
+static const char col_pink[]        = "#f6c4e1";
 static const char *colors[][3]      = {
     /*               fg         bg         border   */
-    [SchemeNorm] = { col_gray3, col_gray1, col_cyan },
-    [SchemeSel]  = { col_gray4, col_cyan,  col_gray2  },
+    [SchemeNorm] = { col_pink,  col_black,  col_black },
+    [SchemeSel]  = { col_white, col_black,  col_white  },
 };
  
 
